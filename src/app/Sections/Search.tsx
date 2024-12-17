@@ -146,7 +146,7 @@ export default function Search() {
         )}
       />
 
-      <Button className='w-full uppercase text-2xl font-bold py-6 hover:text-primaryColor hover:border-2 hover:border-primaryColor' type="submit">Buscar</Button>
+      <Button className='w-full uppercase text-2xl font-bold py-6 hover:text-primaryColor ' type="submit">Buscar</Button>
     </form>
   </Form>
     </div>

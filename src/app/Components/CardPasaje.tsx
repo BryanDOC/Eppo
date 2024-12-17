@@ -5,7 +5,7 @@ import BusIcon from "@/app/Svg/Bus.svg";
 
 export default function CardPasaje() {
   return (
-    <div className="w-full rounded-s-lg py-3 px-4 flex flex-col gap-4 bg-white shadow-lg">
+    <div className="w-full rounded-s-lg py-3 px-4 flex flex-col gap-4 bg-white shadow-lg hover:scale-105">
   <div className="flex justify-between items-center">
     
     <div className="flex flex-col items-center">
