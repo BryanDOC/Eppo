@@ -18,56 +18,55 @@ model Ciudades{
   nombre String
 }
 
-// Modelo de Usuarios
+
 model Usuario {
   id           String @id
   nombre       String
   email        String   @unique
   password     String
   createdAt    DateTime @default(now())
-  reservas     Reserva[] // Relación con las reservas
+  reservas     Reserva[] 
 }
 
-// Modelo de Buses
+
 model Bus {
-  placa        String   @id @unique // Placa del bus
-  capacidad    Int             // Número total de asientos
-  viajes       Viaje[]         // Relación con los viajes
-  asientos     Asiento[]       // Relación con los asientos
+  placa        String   @id @unique
+  capacidad    Int             
+  viajes       Viaje[]         
+  asientos     Asiento[]       
 }
 
-// Modelo de Viajes
+
 model Viaje {
   id           String   @id @default(cuid())
-  origen       String           // Lugar de origen
-  destino      String           // Lugar de destino
-  fechaSalida  DateTime         // Fecha de salida
-  fechaLlegada DateTime        // Fecha de llegada (opcional)
-  precio       Float            // Precio del viaje
-  busId        String           // Relación con el Bus
+  origen       String           
+  destino      String          
+  fechaSalida  DateTime       
+  fechaLlegada DateTime       
+  precio       Float           
+  busId        String         
   bus          Bus     @relation(fields: [busId], references: [placa])
-  reservas     Reserva[]        // Relación con las reservas
+  reservas     Reserva[]        
   createdAt    DateTime @default(now())
 }
 
-// Modelo de Asientos
+
 model Asiento {
   id           String   @id @default(cuid())
-  numero       Int              // Número del asiento
-  estado       String  @default("libre") // Estado: libre, ocupado
-  busId        String           // Relación con el Bus
+  numero       Int              
+  busId        String           
   bus          Bus     @relation(fields: [busId], references: [placa])
-  reservas     Reserva[]        // Relación con las reservas
+  reservas     Reserva[]       
 }
 
-// Modelo de Reservas
+
 model Reserva {
   id           String   @id @default(cuid())
-  usuarioId    String?           // Relación con el Usuario (opcional)
+  usuarioId    String?           
   usuario      Usuario? @relation(fields: [usuarioId], references: [id])
-  viajeId      String            // ID del Viaje
-  asientoId    String            // ID del Asiento
-  dni          String            // DNI de quien compró el pasaje
+  viajeId      String          
+  asientoId    String           
+  dni          String            
   viaje        Viaje   @relation(fields: [viajeId], references: [id])
   asiento      Asiento @relation(fields: [asientoId], references: [id])
   createdAt    DateTime @default(now())
