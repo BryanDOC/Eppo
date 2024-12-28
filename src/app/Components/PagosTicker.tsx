@@ -2,9 +2,9 @@
 import MasterCard from '@/app/assets/Mastercard.webp'
 import Visa from '@/app/assets/Visa.webp'
 import Yape from '@/app/assets/Yape.webp'
-import PagoEfectivo from '@/app/assets/PagoEfectivo.webp'
-import Bbva from '@/app/assets/bbva.webp'
-import Plin from '@/app/assets/plin.webp'
+import PagoEfectivo from '@/app/assets/Pagoefectivo.webp'
+import Bbva from '@/app/assets/BBVA.webp'
+import Plin from '@/app/assets/Plin.webp'
 import Image from 'next/image'
 import {motion} from 'framer-motion'
 
