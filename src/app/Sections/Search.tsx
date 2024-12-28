@@ -46,7 +46,7 @@ export default function Search() {
         }
       } 
     };
-
+    console.log(error)
     fetchCiudades();
   }, []);
   
