@@ -1,23 +1,21 @@
-import React from 'react'
-import Location from '@/app/assets/svg/location.svg'
+import React from 'react';
 
-export default function WhyIcons() {
+interface WhyIconsProps {
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  mainText: string;
+  subText: string;
+}
+
+export default function WhyIcons({ Icon, mainText, subText }: WhyIconsProps) {
   return (
-   <div className='flex flex-col gap-3 items-center w-fit'>
-    <div className="w-16 h-16 bg-white shadow-md rounded-full p-4 flex items-center justify-center">
-  <Location className="w-full h-full text-primaryColor" />
-</div>
-<div className='flex flex-col gap-[6px] items-center'>
-     <p className='font-semibold text-[14px]'>+20 Destinos</p>
-    <p className='font-light text-xs'>Nacionales</p>
-</div>
-   
-   </div>
-
-
-  
-
-        
-     
-  )
+    <div className="flex flex-col gap-3 items-center w-fit">
+      <div className="w-14 h-14 bg-white shadow-md rounded-full p-4 flex items-center justify-center">
+        <Icon className="text-primaryColor h-10 w-10"  />
+      </div>
+      <div className="flex flex-col gap-[2px] items-center">
+        <p className="font-semibold text-[14px] capitalize">{mainText}</p>
+        <p className="font-light text-xs capitalize ">{subText}</p>
+      </div>
+    </div>
+  );
 }

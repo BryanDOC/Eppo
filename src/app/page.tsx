@@ -6,9 +6,15 @@ import { useEffect, useState } from "react";
 import ContainerCardsPasaje from "./Components/ContainerCardsPasaje";
 import axios from 'axios'
 import SliderImage from '@/app/assets/Slider.webp'
+import Ads2 from '@/app/assets/ads2.webp'
 import PagosTicker from "./Components/PagosTicker";
 import Ads from "./Components/Ads";
-import WhyIcons from "./Components/WhyIcons";
+import ContentWhyIcons from "./Components/ContentWhyIcons";
+import { Button } from "@/components/ui/button";
+import AdsBus from '@/app/assets/Ads.webp'
+import AdsMancora from '@/app/assets/Mancora.webp';
+import AdsAsientos from '@/app/assets/Asientos.webp'
+import SearchYouDestination from "./Components/SearchYouDestination";
 
 
 export interface Viaje {
@@ -111,8 +117,35 @@ export default function Home() {
     <Search />
     <ContainerCardsPasaje viajesHome={viajesHome}/>
     <PagosTicker />
-    <Ads/>
-    <WhyIcons/>
+    <Ads  
+      imageSrc={AdsBus}
+      title="Nuevo ecosistema digital"
+      description="La nueva experiencia digital de EPPO está aquí"
+      buttonText="Descubre la nueva experiencia"/>
+    <ContentWhyIcons/>
+    <div className=" px-4 w-full">
+    <div className="flex w-full h-[300px] relative shadow-md">
+    <Image src={Ads2} width={1920} height={1080} alt="Logo" className="w-full h-full object-cover" />
+    <Button className="absolute bottom-4 right-4 bg-white text-primaryColor font-bold">Mas Beneficios</Button>
+    </div>
+    </div>
+        
+    <div className="px-4 flex flex-col gap-4 mt-4">
+      <Ads  
+      imageSrc={AdsMancora}
+      title="Nuevo ecosistema digital"
+      description="La nueva experiencia digital "
+      buttonText="Mas informacion"/>
+    <Ads  
+      imageSrc={AdsAsientos}
+      title="Nuevo ecosistema digital"
+      description="EPPO está aquí"
+      buttonText="Mas informacion"/>
+    </div>
+    <SearchYouDestination />
+    
+    
+
     
 
     </>
