@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import {Assistant} from 'next/font/google'
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -9,11 +9,7 @@ const geistSans = localFont({
   weight: "100 900",
 });
 
-export const assistant = Assistant({
-  weight: ['200', '300', '400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-assistant',
-})
+
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -34,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${assistant.variable}	 antialiased bg-background`}
+        className={`${geistSans.variable} ${geistMono.variable}  antialiased bg-background`}
       >
         {children}
       </body>
