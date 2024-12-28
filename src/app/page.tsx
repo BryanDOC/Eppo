@@ -41,7 +41,7 @@ export default function Home() {
 
           // Guardar la ubicación
           setUbicacion({ lat: latitude, lon: longitude });
-          console.log("Ubicación guardada:", { lat: latitude, lon: longitude });
+          console.log("Ubicación guardada:", ubicacion, { lat: latitude, lon: longitude });
 
           // Llamar a la función para obtener el nombre del lugar
           obtenerCiudad(latitude, longitude);
@@ -59,6 +59,9 @@ export default function Home() {
 
     if(ciudad==null){
       fetchViajesHome();
+    }
+    if (error) {
+      console.error("Error capturado:", error);
     }
   }, []);
   
