@@ -1,5 +1,5 @@
 "use client"
-import NavBar from "./Components/NavBar";
+
 import Image from 'next/image';
 import Search from "./Sections/Search";
 import { useEffect, useState } from "react";

@@ -4,8 +4,6 @@ import { format, subDays, addDays, isBefore, isSameDay } from 'date-fns';
 import { GrPrevious, GrNext } from "react-icons/gr";
 import { es } from 'date-fns/locale';
 
-
-
 <GrNext />
 interface DayNavigatorProps {
     selectedDate: Date  ; 
@@ -14,8 +12,6 @@ export default function DayNavigator({selectedDate}: DayNavigatorProps) {
 
   const today = new Date(); 
   const [currentDate, setCurrentDate] = useState(selectedDate);
-   
-
 
 function formatDate(date: Date): string {
     const formatter = new Intl.DateTimeFormat("es-ES", {
@@ -35,7 +31,6 @@ function formatDate(date: Date): string {
   }
 
     const isPreviousDisabled = isBefore(subDays(currentDate, 1), today) || isSameDay(currentDate, today);
-
 
     const handlePrevious = () => {
     if (!isPreviousDisabled) {
@@ -60,7 +55,7 @@ function formatDate(date: Date): string {
   <span className="text-sm font-light">{format(subDays(currentDate, 1), "dd/MM")}</span>
 </button>
 
-     
+
       <button className=' px-4 py-3 text-[14px] font-bold text-white bg-primaryColor rounded-md'>
         {formatDate(currentDate)}
       </button>
@@ -72,8 +67,6 @@ function formatDate(date: Date): string {
 </button>
 
         </div>
-      
-
       
       <button onClick={handleNext} className='p-3  rounded-r-md  shadow-md '><GrNext className=' text-primaryColor text-xl'/></button>
     </div>
