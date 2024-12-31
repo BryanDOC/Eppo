@@ -5,10 +5,11 @@ import axios from 'axios'
 import { useSearchParams } from "next/navigation";
 import { Viaje } from '@/app/page';
 import ContainerCardsPasaje from '@/app/Components/ContainerCardsPasaje';
-import { useToast } from "@/hooks/use-toast"
+
 import { useRouter } from 'next/navigation'
 import DayNavigator from '@/app/Components/DayNavigator';
-import { ToastAction } from "@/components/ui/toast"
+// import { ToastAction } from "@/components/ui/toast"
+// import { useToast } from "@/hooks/use-toast"
 
 
 export default function Page() {
@@ -23,9 +24,9 @@ export default function Page() {
   const [error, setError] = useState<string>("");
   const formattedDate = date ? new Date(date) : "";
   // const formattedDateReturn = dateReturn ? new Date(dateReturn) : null;
-  
+  console.log(error)
 
-const { toast } = useToast()
+// const { toast } = useToast()
   const router = useRouter()
 
   useEffect(() => {
@@ -42,12 +43,12 @@ const { toast } = useToast()
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || "Error desconocido");
-        toast({
-          variant: "destructive",
-          title: `Uh oh! ${error}`,
-          description: "Selecciona un lugar de Origen y Destino.",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        })
+        // toast({
+        //   variant: "destructive",
+        //   title: `Uh oh! ${error}`,
+        //   description: "Selecciona un lugar de Origen y Destino.",
+        //   action: <ToastAction altText="Try again">Try again</ToastAction>,
+        // })
         router.push('/')
         
       } else {
