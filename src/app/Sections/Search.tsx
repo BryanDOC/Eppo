@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import InputSearch from '../Components/InputSearch'
 import InputDay from '../Components/InputDay'
 import { Button } from "@/components/ui/button"
@@ -12,9 +13,10 @@ import {
 } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { date, z } from "zod"
 import { useState } from 'react'
 import axios from 'axios'
+
 
 const formSchema = z.object({
   placeOrigin: z.string(),
@@ -30,9 +32,11 @@ export interface Ciudad {
 
 export default function Search() {
 
+ 
+  
   const [ciudades, setCiudades] = useState<Ciudad[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const router = useRouter();
   useEffect(() => {
     const fetchCiudades = async () => {
       try {
@@ -63,6 +67,18 @@ export default function Search() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log({values})
+    
+
+   const queryString = new URLSearchParams({
+    placeOrigin: values.placeOrigin,
+    placeDestination: values.placeDestination,
+    date: values.date.toISOString(),
+    dateReturn: values.dateReturn.toISOString(),
+  }).toString();
+
+
+  router.push(`/destination?${queryString}`);
+    
   }
 
  

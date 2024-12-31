@@ -7,14 +7,15 @@ import ContainerCardsPasaje from "./Components/ContainerCardsPasaje";
 import axios from 'axios'
 import SliderImage from '@/app/assets/Slider.webp'
 import Ads2 from '@/app/assets/ads2.webp'
-import PagosTicker from "./Components/PagosTicker";
+import PagosTicker from "./Sections/PagosTicker";
 import Ads from "./Components/Ads";
-import ContentWhyIcons from "./Components/ContentWhyIcons";
+import ContentWhyIcons from "./Sections/ContentWhyIcons";
 import { Button } from "@/components/ui/button";
-import AdsBus from '@/app/assets/Ads.webp'
-import AdsMancora from '@/app/assets/Mancora.webp';
-import AdsAsientos from '@/app/assets/Asientos.webp'
-import SearchYouDestination from "./Components/SearchYouDestination";
+import AdsBus from "@/app/assets/Ads.webp";
+import AdsMancora from "@/app/assets/Mancora.webp";
+import AdsAsientos from "@/app/assets/Asientos.webp";
+import SearchYouDestination from "./Sections/SearchYouDestination";
+import { useToast } from "@/hooks/use-toast"
 
 
 export interface Viaje {
@@ -37,7 +38,8 @@ export default function Home() {
   const [ciudad, setCiudad] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [viajesHome, setViajesHome] = useState<Viaje[]>([]);
-  
+  const { toast } = useToast()
+
   useEffect(() => {
     // Obtener la ubicación del cliente
     if ("geolocation" in navigator) {
@@ -53,8 +55,15 @@ export default function Home() {
           obtenerCiudad(latitude, longitude);
         },
         (err) => {
-          setError("No pudimos obtener tu ubicación. Mostrando resultados por defecto.");
-          console.error(err);
+          if(err!=null){
+            toast({
+            variant: "destructive",
+            title: `Uh oh!`,
+            description: "No pudimos determinar tu ubicación exacta.",
+          })
+          }
+          console.error("Error al obtener la ubicación:", error);
+          
       }
       );
     } 
@@ -66,9 +75,7 @@ export default function Home() {
     if(ciudad==null){
       fetchViajesHome();
     }
-    if (error) {
-      console.error("Error capturado:", error);
-    }
+    
   }, []);
   
 
@@ -93,6 +100,7 @@ export default function Home() {
     }
   };
 
+ 
 
   const fetchViajesHome = async () => {
     try {
@@ -110,7 +118,7 @@ export default function Home() {
 
   return (
     <>
-    <NavBar />
+    
     <div className="flex w-full">
     <Image src={SliderImage} width={1920} height={1080} alt="Logo" className="w-full" />
     </div>
@@ -143,6 +151,7 @@ export default function Home() {
       buttonText="Mas informacion"/>
     </div>
     <SearchYouDestination />
+    
     
     
 

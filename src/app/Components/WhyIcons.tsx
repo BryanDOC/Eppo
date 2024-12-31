@@ -5,7 +5,7 @@ interface WhyIconsProps {
   mainText: string;
   subText: string;
 }
-
+ 
 export default function WhyIcons({ Icon, mainText, subText }: WhyIconsProps) {
   return (
     <div className="flex flex-col gap-3 items-center w-fit">

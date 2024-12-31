@@ -7,23 +7,23 @@ export async function GET() {
   try {
     const ahoraUTC = new Date();
     
-    // Obtener los viajes que están en el futuro
+    
     const viajes = await db.viaje.findMany({
       where: {
         fechaSalida: {
-          gte: ahoraUTC, // Solo viajes futuros
+          gte: ahoraUTC, 
         },
       },
       include: {
         bus: {
           include: {
-            asientos: true, // Incluir asientos para cada bus
+            asientos: true, 
           },
         },
-        reservas: true, // Incluir reservas asociadas al viaje
+        reservas: true, 
       },
       orderBy: {
-        fechaSalida: "asc", // Ordenar por fecha de salida
+        fechaSalida: "asc", 
       },
     });
 
@@ -38,7 +38,7 @@ export async function GET() {
         
         const asientosReservadosIds = viaje.reservas.map((reserva) => reserva.asientoId);
         const asientosLibres = viaje.bus.asientos.filter(
-          (asiento) => !asientosReservadosIds.includes(asiento.id) // Si el asiento no está en las reservas, está libre
+          (asiento) => !asientosReservadosIds.includes(asiento.id) 
         ).length;
         
         const fechaSalidaLocal = toZonedTime(viaje.fechaSalida, zonaHorariaPeru);
