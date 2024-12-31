@@ -57,7 +57,6 @@ export default function Home() {
         (err) => {
           if(err!=null){
             toast({
-            variant: "destructive",
             title: `Uh oh!`,
             description: "No pudimos determinar tu ubicación exacta.",
           })

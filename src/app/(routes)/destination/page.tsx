@@ -43,7 +43,6 @@ const { toast } = useToast()
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || "Error desconocido");
         toast({
-          variant: "destructive",
           title: `Uh oh! ${error}`,
           description: "Selecciona un lugar de Origen y Destino.",
         })

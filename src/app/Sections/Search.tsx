@@ -33,7 +33,6 @@ export interface Ciudad {
 export default function Search() {
 
  
-  
   const [ciudades, setCiudades] = useState<Ciudad[]>([]);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
