@@ -16,7 +16,7 @@ import AdsMancora from "@/app/assets/Mancora.webp";
 import AdsAsientos from "@/app/assets/Asientos.webp";
 import SearchYouDestination from "./Sections/SearchYouDestination";
 import { useToast } from "@/hooks/use-toast"
-
+import { ToastAction } from "@/components/ui/toast"
 
 export interface Viaje {
   id: string;
@@ -57,8 +57,10 @@ export default function Home() {
         (err) => {
           if(err!=null){
             toast({
+            variant: "destructive",
             title: `Uh oh!`,
             description: "No pudimos determinar tu ubicación exacta.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
           })
           }
           console.error("Error al obtener la ubicación:", error);

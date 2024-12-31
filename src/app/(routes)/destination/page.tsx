@@ -8,7 +8,7 @@ import ContainerCardsPasaje from '@/app/Components/ContainerCardsPasaje';
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from 'next/navigation'
 import DayNavigator from '@/app/Components/DayNavigator';
-
+import { ToastAction } from "@/components/ui/toast"
 
 
 export default function Page() {
@@ -43,8 +43,10 @@ const { toast } = useToast()
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || "Error desconocido");
         toast({
+          variant: "destructive",
           title: `Uh oh! ${error}`,
           description: "Selecciona un lugar de Origen y Destino.",
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
         })
         router.push('/')
         
