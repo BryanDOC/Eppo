@@ -8,8 +8,8 @@ import ContainerCardsPasaje from '@/app/Components/ContainerCardsPasaje';
 
 import { useRouter } from 'next/navigation'
 import DayNavigator from '@/app/Components/DayNavigator';
-// import { ToastAction } from "@/components/ui/toast"
-// import { useToast } from "@/hooks/use-toast"
+
+import { useToast } from "@/hooks/use-toast"
 
 
 export default function Page() {
@@ -26,7 +26,7 @@ export default function Page() {
   // const formattedDateReturn = dateReturn ? new Date(dateReturn) : null;
   console.log(error)
 
-// const { toast } = useToast()
+const { toast } = useToast()
   const router = useRouter()
 
   useEffect(() => {
@@ -43,12 +43,12 @@ export default function Page() {
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || "Error desconocido");
-        // toast({
-        //   variant: "destructive",
-        //   title: `Uh oh! ${error}`,
-        //   description: "Selecciona un lugar de Origen y Destino.",
-        //   action: <ToastAction altText="Try again">Try again</ToastAction>,
-        // })
+        toast({
+          
+          title: `Uh oh! ${error}`,
+          description: "Selecciona un lugar de Origen y Destino.",
+          
+        })
         router.push('/')
         
       } else {
