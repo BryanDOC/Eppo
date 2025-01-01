@@ -4,7 +4,7 @@ import "./globals.css";
 import NavBar from "./Components/NavBar";
 import {Assistant} from 'next/font/google'
 import Footer from "./Sections/Footer";
-// import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster"
 
 
 export const assistant = Assistant({subsets: ['latin']})
@@ -29,7 +29,7 @@ export default function RootLayout({
         <NavBar />
         {children}
         <Footer/>
-        {/* <Toaster /> */}
+        <Toaster />
       </body>
     </html>
   );

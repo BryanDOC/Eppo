@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense} from 'react'
 import axios from 'axios'
 import { useSearchParams } from "next/navigation";
 import { Viaje } from '@/app/page';
@@ -59,6 +59,7 @@ const { toast } = useToast()
   };
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className='mt-6'>
       <h2 className=' text-2xl text-primaryColor px-6'>Selecciona tu <span className='font-bold '>viaje de ida</span></h2>
       <DayNavigator selectedDate={new Date(date!)} />
@@ -67,6 +68,7 @@ const { toast } = useToast()
       </div>
       
     </div>
+    </Suspense>
    
   )
 }
