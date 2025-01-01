@@ -5,24 +5,18 @@ import { CalendarIcon } from "lucide-react"
 import Seat from '@/app/assets/svg/seat.svg'
 import { FaRegCreditCard } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-
-import { useSearchParams } from "next/navigation";
-
-
+import {Suspense} from 'react';
+import { useStore } from '@/app/zustand'
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
-    const searchParams = useSearchParams();
     
-      const placeOrigin = searchParams.get("placeOrigin");
-      const placeDestination = searchParams.get("placeDestination");
-      const date = searchParams.get("date");
-      const formattedDate = formatDateToShort(date || '');
+    const { date, placeOrigin, placeDestination } = useStore()
+    const formattedDate = formatDateToShort(date || '');
+    
       
-      
-      
-      
+            
       function formatDateToShort(dateString: string): string {
        
         const date = new Date(dateString);
@@ -36,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       }
 
   return (
-  
+   
     <div className='mt-4 '>
       <div className='px-6'>
         <div className='flex justify-between items-center bg-white w-full shadow-md p-3 rounded-md'>
@@ -57,9 +51,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <ProgressButton Icon={FaRegCreditCard} number={3} text="Pago" link='/payment'/>
     </div>
     <div>
-        {children}
+       <Suspense fallback={<div>Loading...</div>}>
+            {children}
+        </Suspense>
     </div>
     </div>
-    
+     
   )
 }

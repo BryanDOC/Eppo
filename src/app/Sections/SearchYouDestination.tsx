@@ -1,5 +1,5 @@
 import React from "react";
-import Destination from "../Components/Destination";
+import Destination from "../Components/DestinationCards";
 import ElAlto from "@/app/assets/El alto.webp";
 import Mancora from "@/app/assets/Mancora.webp";
 import Talara from "@/app/assets/Talara.webp";

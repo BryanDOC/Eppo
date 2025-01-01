@@ -1,31 +1,32 @@
 "use client"
 
-import React, { useEffect, useState, Suspense} from 'react'
+import React, { useEffect, useState} from 'react'
 import axios from 'axios'
-
+import { useSearchParams } from "next/navigation";
 import { Viaje } from '@/app/page';
 import ContainerCardsPasaje from '@/app/Components/ContainerCardsPasaje';
 
 import { useRouter } from 'next/navigation'
 import DayNavigator from '@/app/Components/DayNavigator';
-import { useStore } from '@/app/zustand';
+// import { useStore } from '@/app/zustand';
 import { useToast } from "@/hooks/use-toast"
 
 
 export default function Page() {
 
- 
+  const searchParams = useSearchParams();
+
+  const placeOrigin = searchParams.get("placeOrigin");
+  const placeDestination = searchParams.get("placeDestination");
+  const date = searchParams.get("date");
 
   const [viajesSearch, setViajesSearch] = useState<Viaje[]>([]);
   const [error, setError] = useState<string>("");
-  
-  const {date,placeOrigin,placeDestination} = useStore()
   const formattedDate = date ? new Date(date) : "";
-
-
+  
   console.log(error)
 
-const { toast } = useToast()
+  const { toast } = useToast()
   const router = useRouter()
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const { toast } = useToast()
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+  
     <div className='mt-6'>
       <h2 className=' text-2xl text-primaryColor px-6'>Selecciona tu <span className='font-bold '>viaje de ida</span></h2>
       <DayNavigator selectedDate={new Date(date!)} />
@@ -67,7 +68,7 @@ const { toast } = useToast()
       </div>
       
     </div>
-    </Suspense>
+  
    
   )
 }

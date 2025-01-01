@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useState } from 'react'
 import axios from 'axios'
-import { useStore } from '@/app/zustand'
+// import { useStore } from '@/app/zustand'
 
 
 const formSchema = z.object({
@@ -33,7 +33,7 @@ export interface Ciudad {
 
 export default function Search() {
 
-  const {setDate,setPlaceDestination,setPlaceOrigin} = useStore()
+  // const {setDate,setPlaceDestination,setPlaceOrigin} = useStore()
   const [ciudades, setCiudades] = useState<Ciudad[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -80,9 +80,9 @@ export default function Search() {
 
 
   router.push(`/destination?${queryString}`);
-    setDate(values.date.toISOString())
-    setPlaceOrigin(values.placeOrigin)
-    setPlaceDestination(values.placeDestination)
+    // setDate(values.date.toISOString())
+    // setPlaceOrigin(values.placeOrigin)
+    // setPlaceDestination(values.placeDestination)
     
   }
 
