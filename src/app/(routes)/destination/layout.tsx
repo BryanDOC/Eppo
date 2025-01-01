@@ -1,4 +1,5 @@
 "use client"
+
 import ProgressButton from '@/app/Components/ProgressButton';
 import { CalendarIcon } from "lucide-react"
 import Seat from '@/app/assets/svg/seat.svg'
@@ -6,6 +7,9 @@ import { FaRegCreditCard } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 
 import { useSearchParams } from "next/navigation";
+
+
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
@@ -15,8 +19,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       const placeDestination = searchParams.get("placeDestination");
       const date = searchParams.get("date");
       const formattedDate = formatDateToShort(date || '');
-      console.log(date)
-    
+      
+      
+      
+      
       function formatDateToShort(dateString: string): string {
        
         const date = new Date(dateString);
@@ -30,6 +36,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       }
 
   return (
+  
     <div className='mt-4 '>
       <div className='px-6'>
         <div className='flex justify-between items-center bg-white w-full shadow-md p-3 rounded-md'>
@@ -53,5 +60,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {children}
     </div>
     </div>
+    
   )
 }

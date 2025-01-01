@@ -2,28 +2,27 @@
 
 import React, { useEffect, useState, Suspense} from 'react'
 import axios from 'axios'
-import { useSearchParams } from "next/navigation";
+
 import { Viaje } from '@/app/page';
 import ContainerCardsPasaje from '@/app/Components/ContainerCardsPasaje';
 
 import { useRouter } from 'next/navigation'
 import DayNavigator from '@/app/Components/DayNavigator';
-
+import { useStore } from '@/app/zustand';
 import { useToast } from "@/hooks/use-toast"
 
 
 export default function Page() {
 
-  const searchParams = useSearchParams();
+ 
 
-  const placeOrigin = searchParams.get("placeOrigin");
-  const placeDestination = searchParams.get("placeDestination");
-  const date = searchParams.get("date");
-  // const dateReturn = searchParams.get("dateReturn");
   const [viajesSearch, setViajesSearch] = useState<Viaje[]>([]);
   const [error, setError] = useState<string>("");
+  
+  const {date,placeOrigin,placeDestination} = useStore()
   const formattedDate = date ? new Date(date) : "";
-  // const formattedDateReturn = dateReturn ? new Date(dateReturn) : null;
+
+
   console.log(error)
 
 const { toast } = useToast()

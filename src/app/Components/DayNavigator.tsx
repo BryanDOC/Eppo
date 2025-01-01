@@ -4,13 +4,14 @@ import { format, subDays, addDays, isBefore, isSameDay } from 'date-fns';
 import { GrPrevious, GrNext } from "react-icons/gr";
 import { es } from 'date-fns/locale';
 
-<GrNext />
+
 interface DayNavigatorProps {
-    selectedDate: Date  ; 
+    selectedDate: Date; 
   }
 export default function DayNavigator({selectedDate}: DayNavigatorProps) {
 
-  const today = new Date(); 
+  const today = new Date();
+ 
   const [currentDate, setCurrentDate] = useState(selectedDate);
 
 function formatDate(date: Date): string {
