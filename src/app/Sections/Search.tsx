@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useState } from 'react'
 import axios from 'axios'
-// import { useStore } from '@/app/zustand'
+import { useStore } from '@/app/zustand'
 
 
 const formSchema = z.object({
@@ -33,7 +33,7 @@ export interface Ciudad {
 
 export default function Search() {
 
-  // const {setDate,setPlaceDestination,setPlaceOrigin} = useStore()
+  const {setDate,setPlaceDestination,setPlaceOrigin} = useStore()
   const [ciudades, setCiudades] = useState<Ciudad[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -80,19 +80,19 @@ export default function Search() {
 
 
   router.push(`/destination?${queryString}`);
-    // setDate(values.date.toISOString())
-    // setPlaceOrigin(values.placeOrigin)
-    // setPlaceDestination(values.placeDestination)
+    setDate(values.date.toISOString())
+    setPlaceOrigin(values.placeOrigin)
+    setPlaceDestination(values.placeDestination)
     
   }
 
  
   return (
    
-    <div className='mt-8 px-6'>
-      <h1 className='text-3xl font-bold text-center text-primaryColor'>Busca tu destino</h1>
+    <div className='mt-6 px-6'>
+      <h1 className='text-2xl font-bold text-center text-primaryColor'>Busca tu destino</h1>
       <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-8">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-6">
       <FormField
         control={form.control}
         name="placeOrigin"

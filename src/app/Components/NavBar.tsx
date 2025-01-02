@@ -17,10 +17,10 @@ export default function NavBar() {
   
   
   return (
-    <div className='flex items-center justify-between px-6 py-4'>
-    <Image src="/logo.png" alt="Logo" width={100} height={24} className='w-auto h-auto'/>
+    <div className='flex items-center justify-between px-6 py-3'>
+    <Image src="/logo.png" alt="Logo" width={1920} height={1080} className='w-16 h-auto'/>
     <Sheet>
-  <SheetTrigger> <Menu className='text-primaryColor' size={32}/></SheetTrigger>
+  <SheetTrigger> <Menu className='text-primaryColor' size={24}/></SheetTrigger>
   <SheetContent className='w-full' side={"right"}>
     <SheetHeader>
       <DialogTitle></DialogTitle>

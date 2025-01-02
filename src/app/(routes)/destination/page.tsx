@@ -8,7 +8,7 @@ import ContainerCardsPasaje from '@/app/Components/ContainerCardsPasaje';
 
 import { useRouter } from 'next/navigation'
 import DayNavigator from '@/app/Components/DayNavigator';
-// import { useStore } from '@/app/zustand';
+
 import { useToast } from "@/hooks/use-toast"
 
 
@@ -25,6 +25,7 @@ export default function Page() {
   const formattedDate = date ? new Date(date) : "";
   
   console.log(error)
+  console.log(date)
 
   const { toast } = useToast()
   const router = useRouter()
@@ -61,7 +62,7 @@ export default function Page() {
   return (
   
     <div className='mt-6'>
-      <h2 className=' text-2xl text-primaryColor px-6'>Selecciona tu <span className='font-bold '>viaje de ida</span></h2>
+      <h2 className=' text-2xl text-primaryColor px-6 py-6'>Selecciona tu <span className='font-bold '>viaje de ida</span></h2>
       <DayNavigator selectedDate={new Date(date!)} />
       <div className='mb-[100px]'>
       <ContainerCardsPasaje viajesHome={viajesSearch} />
