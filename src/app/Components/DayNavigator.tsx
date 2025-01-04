@@ -3,6 +3,8 @@ import React,{ useState } from 'react'
 import { format, subDays, addDays, isBefore} from 'date-fns';
 import { GrPrevious, GrNext } from "react-icons/gr";
 import { es } from 'date-fns/locale';
+import {useStore} from '@/app/zustand'
+import { useRouter } from "next/navigation";
 
 
 interface DayNavigatorProps {
@@ -11,10 +13,12 @@ interface DayNavigatorProps {
 export default function DayNavigator({selectedDate}: DayNavigatorProps) {
 
   const today = new Date();
-  
+  const {setDate, date, placeDestination, placeOrigin} = useStore()
   const [currentDate, setCurrentDate] = useState(selectedDate);
-
+  const router = useRouter();
+  
 function formatDate(date: Date): string {
+    
     const formatter = new Intl.DateTimeFormat("es-ES", {
       weekday: "long",
       day: "2-digit",
@@ -43,11 +47,25 @@ function formatDate(date: Date): string {
     const handlePrevious = () => {
     if (!isPreviousDisabled) {
       setCurrentDate(subDays(currentDate, 1));
+      setDate(subDays(currentDate, 1).toString());
+      const params = new URLSearchParams({
+        placeOrigin,
+        placeDestination,
+        date: new Date(date).toISOString(),
+      });
+      router.replace(`/destination?${params.toString()}`);
     }
     };
 
     const handleNext = () => {
         setCurrentDate(addDays(currentDate, 1));
+        setDate(addDays(currentDate, 1).toString());
+        const params = new URLSearchParams({
+          placeOrigin,
+          placeDestination,
+          date: new Date(date).toISOString(),
+        });
+        router.replace(`/destination?${params.toString()}`); 
       };
 
   return (

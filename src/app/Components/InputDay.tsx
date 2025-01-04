@@ -4,10 +4,14 @@
 import * as React from "react"
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
+import { IoIosArrowDown } from "react-icons/io";
+import { useState } from "react"
+import { IoIosArrowUp } from "react-icons/io";
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
+import {useStore} from '@/app/zustand'
 import {
   Popover,
   PopoverContent,
@@ -15,24 +19,40 @@ import {
 } from "@/components/ui/popover"
 
 
+
 interface TypeInputDay {
     text: string;
     placeHolder: string;
     value: Date | undefined; 
+    opcional?: boolean
     onChange: (date: Date | undefined) => void; 
      
   }
 
-export default function InputDay({text, placeHolder, value, onChange}: TypeInputDay) {
+export default function InputDay({text, placeHolder, value, opcional, onChange}: TypeInputDay) {
 
    
-    
+   const {setOpcional} = useStore()
+   const [open, setOpen] = useState<boolean>(false)
+
+   const handleShowInput = () => {
+    setOpen(!open)
+    setOpcional(!opcional)
+   }
 
   return (
     <div className="">
-         <p className='uppercase text-textOpaco mb-2 font-semibold text-xs'>{text}*</p>
+      <div className="flex gap-4">
+        <p className='uppercase text-textOpaco mb-2 font-semibold text-xs'>{text}*</p>
+        {opcional ? 
+        <IoIosArrowDown onClick={handleShowInput} className='text-primaryColor cursor-pointer'/> 
+        :
+        <IoIosArrowUp onClick={handleShowInput} className={`${opcional!=null ? "text-primaryColor cursor-pointer" : "hidden"}`}/>
+       }
+      </div>
+        
         <Popover >
-      <PopoverTrigger asChild className="">
+      <PopoverTrigger asChild className={`${opcional ? "hidden" : "flex"}`}>
         <Button
           variant={"outline"}
           className={cn(

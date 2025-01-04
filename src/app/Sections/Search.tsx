@@ -33,9 +33,10 @@ export interface Ciudad {
 
 export default function Search() {
 
-  const {setDate,setPlaceDestination,setPlaceOrigin} = useStore()
+  const {setDate,setPlaceDestination,setPlaceOrigin, opcional} = useStore()
   const [ciudades, setCiudades] = useState<Ciudad[]>([]);
   const [error, setError] = useState<string | null>(null);
+
 
   const router = useRouter();
   useEffect(() => {
@@ -89,10 +90,10 @@ export default function Search() {
  
   return (
    
-    <div className='mt-6 px-6'>
-      <h1 className='text-2xl font-bold text-center text-primaryColor'>Busca tu destino</h1>
+    <div className='mt-4 px-6'>
+      <h1 className='text-2xl font-bold text-center text-primaryColor '>Busca tu destino</h1>
       <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-6">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-4">
       <FormField
         control={form.control}
         name="placeOrigin"
@@ -139,7 +140,7 @@ export default function Search() {
         <InputDay 
             text='Salida' 
             placeHolder='Fecha Salida'
-            value={field.value} 
+            value={field.value}
             onChange={field.onChange}
             />
             </FormControl>
@@ -159,6 +160,7 @@ export default function Search() {
             text='Retorno (Opcional)' 
             placeHolder='Fecha Regreso'
             value={field.value} 
+            opcional = {opcional} 
             onChange={field.onChange}
             />
             </FormControl>
@@ -166,6 +168,7 @@ export default function Search() {
           </FormItem>
         )}
       />
+
 
       <Button className='w-full uppercase text-2xl font-bold py-6 hover:text-primaryColor ' type="submit">Buscar</Button>
     </form>

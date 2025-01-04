@@ -21,7 +21,7 @@ export default function CardPasaje(Props: { viaje: Viaje }) {
       return format(fecha, "a");
     };
 
- 
+    console.log(obtenerPeriodo("2025-01-04T06:14:00"))
   
   const calcularDiferenciaMinutos = (fechaInicio: string | Date, fechaFin: string | Date): number => {
     const inicio = typeof fechaInicio === "string" ? new Date(fechaInicio) : fechaInicio;
@@ -45,7 +45,7 @@ export default function CardPasaje(Props: { viaje: Viaje }) {
     <div className="flex flex-col items-center justify-center w-full max-w-[180px]">
      
     {
-        obtenerPeriodo(viaje.fechaSalida) === "am" ? (
+        obtenerPeriodo(viaje.fechaSalida) === "AM" ? (
           <Sun className="w-6 h-6 mb-[4px] text-primaryColor" />
         ) : (
           <Moon className="w-6 h-6 mb-[4px] text-primaryColor" />

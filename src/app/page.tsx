@@ -121,7 +121,7 @@ export default function Home() {
     <>
     
     <div className="flex w-full">
-    <Image src={SliderImage} width={1920} height={1080} alt="Logo" className="w-full" />
+    <Image src={SliderImage} width={1920} height={1080} alt="Logo" className="w-full " />
     </div>
     <Search />
     <ContainerCardsPasaje viajesHome={viajesHome}/>

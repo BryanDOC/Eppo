@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     
     const { date, placeOrigin, placeDestination } = useStore()
-    const formattedDate = formatDateToShort(date || '');
+    const formattedDate = formatDateToShort(date.toLocaleString() || '');
     
       
             
