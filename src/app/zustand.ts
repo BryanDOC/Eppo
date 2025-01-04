@@ -15,7 +15,7 @@ type Store = {
   }
  
  export const useStore = create<Store>()((set) => ({
-    date: "", 
+    date: new Date(), 
     setDate: (date) => set(() => ({ date: date })),
     placeOrigin: "",
     setPlaceOrigin: (placeOrigin) => set(() => ({ placeOrigin: placeOrigin })),
