@@ -18,6 +18,27 @@ import SearchYouDestination from "./Sections/SearchYouDestination";
 import { useToast } from "@/hooks/use-toast"
 
 
+export interface Asiento {
+  id: string;
+  numero: number;
+  busId: string;
+}
+
+export interface Bus {
+  placa: string;
+  capacidad: number;
+  asientos: Asiento[];
+}
+
+export interface Reserva {
+  asientoId: string;
+  createdAt: string;
+  dni: string;
+  id: string;
+  usuarioId: string;
+  viajeId: string;
+
+}
 export interface Viaje {
   id: string;
   origen: string;
@@ -26,10 +47,13 @@ export interface Viaje {
   fechaLlegada: string;
   precio: number;
   busId: string;
-  reservas:[];
+  reservas: Reserva[];
   asientosLibres: number;
-  bus:[]
+  bus: Bus;
 }
+
+
+
 
 export default function Home() {
 
@@ -41,17 +65,17 @@ export default function Home() {
   const { toast } = useToast()
 
   useEffect(() => {
-    // Obtener la ubicación del cliente
+   
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
 
-          // Guardar la ubicación
+         
           setUbicacion({ lat: latitude, lon: longitude });
           console.log("Ubicación guardada:", ubicacion, { lat: latitude, lon: longitude });
 
-          // Llamar a la función para obtener el nombre del lugar
+       
           obtenerCiudad(latitude, longitude);
         },
         (err) => {
@@ -91,7 +115,7 @@ export default function Home() {
       const data = await response.json();
 
       console.log("Respuesta Nominatim:", data);
-      // Extraer la ciudad del JSON
+      
       const nombreCiudad = data.address.city || data.address.town || data.address.village;
 
       setCiudad(nombreCiudad);
@@ -107,7 +131,7 @@ export default function Home() {
     try {
       const response = await axios.get<Viaje[]>("/api/viajesHome");
       setViajesHome(response.data);
-      console.log("Viajes obtenidos:", response.data);
+      
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || "Error desconocido");
@@ -153,11 +177,6 @@ export default function Home() {
     </div>
     <SearchYouDestination />
     
-    
-    
-
-    
-
     </>
   );
 }

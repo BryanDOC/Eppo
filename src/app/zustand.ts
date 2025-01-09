@@ -1,4 +1,7 @@
 import { create } from 'zustand'
+import { Viaje } from '@/app/page'
+
+
 
 type Store = {
   date: Date | string;
@@ -11,7 +14,10 @@ type Store = {
   setOpcional: (opcional: boolean) => void,
   formatteDate: Date | string,
   setFormattedDate: (formattedDate: Date | string) => void
-  
+  selectViaje: Viaje | null,
+  setSelectViaje: (viaje: Viaje) => void;
+  selectSeat: number | null,
+  setSelectSeat: (seat: number) => void
   }
  
  export const useStore = create<Store>()((set) => ({
@@ -24,7 +30,10 @@ type Store = {
     opcional: true,
     setOpcional: (opcional) => set(() => ({ opcional: opcional })),
     formatteDate: "",
-    setFormattedDate: (formatteDate) => set(() => ({ formatteDate: formatteDate }))
-    
+    setFormattedDate: (formatteDate) => set(() => ({ formatteDate: formatteDate })),
+    selectViaje: null,
+    setSelectViaje: (viaje) => set({ selectViaje: viaje }),
+    selectSeat: null,
+    setSelectSeat: (seat) => set({ selectSeat: seat }),
   }))
   

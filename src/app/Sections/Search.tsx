@@ -69,7 +69,7 @@ export default function Search() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log({values})
+    
     
 
    const queryString = new URLSearchParams({

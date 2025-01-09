@@ -47,7 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </div>
     <div className='flex mt-8 items-center justify-center'>
     <ProgressButton Icon={CalendarIcon} number={1} text="Destinos" link='/destination'/>
-    <ProgressButton Icon={Seat} number={2} text="Asientos" link='/seats'/>
+    <ProgressButton Icon={Seat} number={2} text="Asientos" link='/destination/selectseat'/>
     <ProgressButton Icon={FaRegCreditCard} number={3} text="Pago" link='/payment'/>
     </div>
     <div>

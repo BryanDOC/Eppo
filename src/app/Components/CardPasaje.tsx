@@ -5,11 +5,14 @@ import { Viaje } from '../page'
 import { format } from "date-fns";
 import { Sun } from 'lucide-react';
 import { Moon } from 'lucide-react';
-
+import { useRouter } from "next/navigation";
+import {useStore} from '@/app/zustand'
 
 export default function CardPasaje(Props: { viaje: Viaje }) {
 
   const { viaje } = Props
+  const router = useRouter();
+  const {setSelectViaje, setPlaceDestination, setPlaceOrigin,setDate} = useStore()  
 
     const obtenerHora = (fechaISO: string): string => {
       const fecha = new Date(fechaISO);
@@ -21,7 +24,13 @@ export default function CardPasaje(Props: { viaje: Viaje }) {
       return format(fecha, "a");
     };
 
-    console.log(obtenerPeriodo("2025-01-04T06:14:00"))
+    const UpdateSelectViaje = () => {
+      setSelectViaje(viaje); 
+      setPlaceOrigin(viaje.origen);
+      setPlaceDestination(viaje.destino);
+      setDate(viaje.fechaSalida);
+      router.push(`/destination/selectseat/${viaje.id}`); 
+    };
   
   const calcularDiferenciaMinutos = (fechaInicio: string | Date, fechaFin: string | Date): number => {
     const inicio = typeof fechaInicio === "string" ? new Date(fechaInicio) : fechaInicio;
@@ -32,7 +41,7 @@ export default function CardPasaje(Props: { viaje: Viaje }) {
   const diferenciaMinutos = calcularDiferenciaMinutos(viaje.fechaSalida, viaje.fechaLlegada);
 
   return (
-    <div className="w-full rounded-s-lg py-3 px-4 flex flex-col gap-4 bg-white shadow-lg hover:scale-105">
+    <div className="w-full rounded-s-lg py-3 px-4 flex flex-col gap-4 bg-white shadow-lg hover:scale-105" onClick={UpdateSelectViaje} >
   <div className="flex justify-between items-center">
     
     <div className="flex flex-col items-center">
