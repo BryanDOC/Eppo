@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${assistant.className} antialiased bg-background`}
+        className={`${assistant.className} antialiased bg-backgroundApp`}
       >
         <NavBar />
         {children}

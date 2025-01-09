@@ -11,7 +11,7 @@ export default {
   	extend: {
   		colors: {
   			
-  			backgroundApp: "#eeeeef",
+  			backgroundApp: "#F3F2F6",
 			baseBlack: "#0B0A0A",
 			primaryColor: '#006FB7',
 			secondaryColor: "#FBF23D",

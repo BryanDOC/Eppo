@@ -56,7 +56,7 @@ export default function InputDay({text, placeHolder, value, opcional, onChange}:
         <Button
           variant={"outline"}
           className={cn(
-            "w-full justify-start text-left font-normal rounded-xl py-6 border-primaryColor",
+            "w-full justify-start text-left font-normal rounded-xl py-6 border-primaryColor bg-backgroundApp",
             !value && "text-muted-foreground"
           )}
         >
