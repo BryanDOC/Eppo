@@ -9,8 +9,8 @@ import WhyIcons from "../Components/WhyIcons";
 
 export default function ContentWhyIcons() {
   return (
-    <div className="flex flex-col gap-8 py-4 px-6 mt-8 mb-8">
-      <h2 className="text-center text-2xl ">
+    <div className="flex flex-col gap-8 py-4 px-6 mt-8 mb-8 lg:px-[80px] md:px-12 2xl:px-[200px] ">
+      <h2 className="text-center text-2xl md:text-3xl ">
         ¿Por qué <span className="font-bold">elegirnos?</span>
       </h2>
       <div className="flex  items-center justify-between ">

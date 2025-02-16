@@ -11,7 +11,7 @@ import {motion} from 'framer-motion'
 
 export default function PagosTicker() {
   return (
-    <div className='py-8 md:py-12 bg-white'>
+    <div className='py-8 md:py-12 bg-backgroundApp lg:px-[80px] 2xl:px-[200px] '>
       <div className='container'>
         <div className='flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]'>
         <motion.div className='flex gap-10 flex-none pr-10'

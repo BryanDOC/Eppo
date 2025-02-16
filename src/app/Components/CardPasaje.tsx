@@ -41,51 +41,51 @@ export default function CardPasaje(Props: { viaje: Viaje }) {
   const diferenciaMinutos = calcularDiferenciaMinutos(viaje.fechaSalida, viaje.fechaLlegada);
 
   return (
-    <div className="w-full rounded-s-lg py-3 px-4 flex flex-col gap-4 bg-white shadow-lg hover:scale-105" onClick={UpdateSelectViaje} >
-  <div className="flex justify-between items-center">
+    <div className="w-full rounded-s-lg py-3 px-4 md:px-6 flex flex-col gap-4 bg-white shadow-lg hover:scale-105" onClick={UpdateSelectViaje} >
+  <div className="flex justify-between items-center ">
     
-    <div className="flex flex-col items-center">
-      <p className="font-bold text-[20px]">{obtenerHora(viaje.fechaSalida)}
+    <div className="flex flex-col items-center ">
+      <p className="font-bold text-[20px] md:text-2xl">{obtenerHora(viaje.fechaSalida)}
       </p>
-      <p className="text-base text-textOpaco">{viaje.origen}</p>
+      <p className="text-base text-textOpaco md:text-[20px]">{viaje.origen}</p>
     </div>
 
    
-    <div className="flex flex-col items-center justify-center w-full max-w-[180px]">
+    <div className="flex flex-col items-center justify-center px-8 w-full ">
      
     {
         obtenerPeriodo(viaje.fechaSalida) === "AM" ? (
-          <Sun className="w-6 h-6 mb-[4px] text-primaryColor" />
+          <Sun className="w-6 h-6 md:w-8 md:h-8 mb-[4px] text-primaryColor" />
         ) : (
-          <Moon className="w-6 h-6 mb-[4px] text-primaryColor" />
+          <Moon className="w-6 h-6 md:w-8 md:h-8 mb-[4px] text-primaryColor" />
         )
       }
  
      
-      <div className="flex items-center w-full ">
-        <div className="flex-1 border-t-[1px] border-dashed border-gray-500"></div>
-        <p className="mx-2 font-semibold uppercase text-textOpaco whitespace-nowrap text-xs">Directo</p>
-        <div className="flex-1 border-t-[1px] border-dashed border-gray-500"></div>
+      <div className="flex items-center w-full  ">
+        <div className="flex-1 border-t-[1px] border-dashed border-gray-500 "></div>
+        <p className="mx-2 font-semibold uppercase text-textOpaco whitespace-nowrap text-xs md:text-base">Directo</p>
+        <div className="flex-1 border-t-[1px] border-dashed border-gray-500 "></div>
       </div>
-      <p className="text-xs text-textOpaco mt-2 ">{diferenciaMinutos} Min</p>
+      <p className="text-xs text-textOpaco mt-2 md:text-base ">{diferenciaMinutos} Min</p>
       
       </div>
 
-      <div className="flex flex-col items-center">
-      <p className="font-bold text-[20px]">{obtenerHora(viaje.fechaLlegada)}
+      <div className="flex flex-col items-center ">
+      <p className="font-bold text-[20px] md:text-2xl">{obtenerHora(viaje.fechaLlegada)}
      
       </p>
-      <p className="text-base text-textOpaco">{viaje.destino}</p>
+      <p className="text-base text-textOpaco md:text-[20px]">{viaje.destino}</p>
     </div>
   </div>
   
-  <div className="flex justify-between">
-    <div className="flex items-center gap-2">
-      <SeatIcon className="w-6 h-6 text-primaryColor" />
-      <p className={`font-bold text-xs ${viaje.asientosLibres < 10 ? "text-red-500" : "text-primaryColor"}`}>{viaje.asientosLibres} Disponibles</p>
+  <div className="flex justify-between ">
+    <div className="flex items-center gap-2 md:gap-4 ">
+      <SeatIcon className="w-6 h-6 md:w-8 md:h-8 text-primaryColor" />
+      <p className={`font-bold text-xs md:text-base ${viaje.asientosLibres < 10 ? "text-red-500" : "text-primaryColor"}`}>{viaje.asientosLibres} Disponibles</p>
     </div>
     <div>
-      <p className="text-base font-bold text-primaryColor">S/. {viaje.precio}</p>
+      <p className="text-base font-bold text-primaryColor md:text-[20px]">S/. {viaje.precio}</p>
     </div>
   </div>
 </div>

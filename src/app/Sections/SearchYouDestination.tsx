@@ -8,12 +8,12 @@ import Piura from "@/app/assets/Piura.webp";
 
 export default function SearchYouDestination() {
   return (
-    <div className="flex flex-col gap-4 mt-8 px-4 py-8">
+    <div className="flex flex-col gap-4 mt-8 px-4 py-8 lg:px-[80px] 2xl:px-[200px]   md:px-12">
       <h1 className="font-extralight italic text-center text-2xl">
         !Encuentra
-        <span className="font-extrabold text-primaryColor">tu Destino!</span>
+        <span className="font-extrabold text-primaryColor"> tu Destino!</span>
       </h1>
-      <div className="flex gap-10 overflow-x-auto scrollbar-hide my-6">
+      <div className="flex gap-10 md:gap-6 lg:gap-4 overflow-x-auto scrollbar-hide my-6 ">
         <Destination imageSrc={Sullana} city="Sullana" />
         <Destination imageSrc={Piura} city="Piura" />
         <Destination imageSrc={Talara} city="Talara" />

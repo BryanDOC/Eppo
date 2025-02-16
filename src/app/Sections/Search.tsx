@@ -36,7 +36,7 @@ export default function Search() {
   const {setDate,setPlaceDestination,setPlaceOrigin, opcional} = useStore()
   const [ciudades, setCiudades] = useState<Ciudad[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  
 
   const router = useRouter();
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Search() {
         }
       } 
     };
-    console.log(error)
+    
     fetchCiudades();
     
   }, []);
@@ -90,11 +90,18 @@ export default function Search() {
  
   return (
    
-    <div className='mt-4 px-6'>
-      <h1 className='text-2xl font-bold text-center text-primaryColor '>Busca tu destino</h1>
+    <div className='mt-3 lg:mt-8 md:my-8 px-6 xl:pb-6 md:px-12 lg:px-[80px] xl:px-[38px] xl:bg-white xl:rounded-3xl'>
+      {error && <p className="text-red-500">{error}</p>}
+      
+      <h1 className='text-2xl md:text-[32px] lg:text-5xl font-bold text-center md:py-6 lg:pb-8 text-primaryColor xl:text-left'>Busca tu destino</h1>
       <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-4">
-      <FormField
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-4 lg:mt-4 lg:flex-row  lg:gap-4 lg:items-center xl:flex">
+      <div className='flex flex-col lg:flex-row md:flex-col gap-4  '>
+      
+      <div className='flex flex-col md:flex-row w-full gap-4 '>
+        <div className='w-full xl:min-w-[200px] 2xl:min-w-[250px]'>
+          <FormField
+        
         control={form.control}
         name="placeOrigin"
         render={({ field }) => (
@@ -111,8 +118,10 @@ export default function Search() {
           </FormItem>
         )}
       />
-
-<FormField
+        </div>
+         
+<div className='w-full xl:min-w-[200px] 2xl:min-w-[250px]'>
+  <FormField
         control={form.control}
         name="placeDestination"
         render={({ field }) => (
@@ -129,8 +138,14 @@ export default function Search() {
           </FormItem>
         )}
       />
+</div>
 
-<FormField
+      </div>
+     
+<div className='flex flex-col md:flex-row gap-4 w-full'>
+
+<div className='w-full xl:min-w-[200px] 2xl:min-w-[250px]'>
+  <FormField
         control={form.control}
         name="date"
         render={({ field }) => (
@@ -148,8 +163,10 @@ export default function Search() {
           </FormItem>
         )}
       />
+</div>
 
-<FormField
+<div className='w-full xl:min-w-[200px] 2xl:min-w-[250px]'>
+  <FormField
         control={form.control}
         name="dateReturn"
         render={({ field }) => (
@@ -168,7 +185,11 @@ export default function Search() {
           </FormItem>
         )}
       />
+</div>
 
+</div>
+  
+</div>
 
       <Button className='w-full uppercase text-2xl font-bold py-6 hover:text-primaryColor ' type="submit">Buscar</Button>
     </form>

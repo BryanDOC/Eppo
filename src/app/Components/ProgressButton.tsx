@@ -14,22 +14,22 @@ export default function ProgressButton({Icon,number, text, link}: ProgressButton
 
   
   const pathname = usePathname();
-  
+  const normalizedPathname = pathname.replace(/\/destination\/selectseat\/[^/]+/, "/destination/selectseat"); 
   const isActive = pathname === link;
-  const isCompleted = pathname.startsWith(link); 
+  const isCompleted = normalizedPathname.startsWith(link);
 
   return (
-    <Link className='flex'
+    <Link className='flex md:w-full '
     href={link}>
-        <hr className={`mt-4  border-4 ${isCompleted ? 'border-primaryColor':'border-neutral-300'} px-2`}/>
-         <div className={`flex gap-2 items-center ${isActive 
+        <hr className={`mt-4 md:w-full border-4 ${isCompleted ? 'border-primaryColor':'border-neutral-300'} px-2`}/>
+         <div className={`flex gap-2 items-center md:justify-center ${isActive 
           
           ? 'bg-primaryColor'
           : isCompleted 
           ? 'bg-primaryColor'
-          :'bg-neutral-300'}  px-3 py-2 rounded-3xl w-fit text-xs text-white`}>
+          :'bg-neutral-300'}  px-3 py-2 rounded-3xl md:min-w-32 w-fit text-xs text-white`}>
            <Icon className='!w-5 !h-5' />
-      <h2>{number}. {text}</h2>
+      <h2 className='md:text-base'>{number}. {text}</h2>
     </div>
     </Link>
    

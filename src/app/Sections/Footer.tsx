@@ -8,11 +8,12 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <div className='flex flex-col items-center justify-center px-6 py-16 bg-primaryColor gap-4'>
-      <Image src="/logo.png" alt="Logo" width={1920} height={1080} className='w-auto h-14 '/>
+    <div className=' lg:px-[80px] 2xl:px-[200px]  px-6 py-16 2xl:flex 2xl:gap-16 2xl:justify-between 2xl:items-center bg-primaryColor gap-4'>
+      <div className=' flex flex-col items-center justify-center'>
+        <Image src="/logo.png" alt="Logo" width={1920} height={1080} className='w-auto h-14 '/>
       <div className='flex flex-col gap-4 items-center justify-center' >
         <h2 className='font-bold text-2xl text-white'>Encuentranos en:</h2>
-        <div className='flex gap-4'>
+        <div className='flex gap-4 '>
         <div className="w-12 h-12 bg-white shadow-md rounded-full p-4 flex items-center justify-center">
         <FaFacebookF className="text-primaryColor h-10 w-10"  />
       </div>
@@ -23,7 +24,10 @@ export default function Footer() {
         <FaInstagram   className="text-primaryColor h-10 w-10"  />
       </div>
         </div>
-        <div className='flex flex-col gap-2 mt-14 items-center justify-center text-white'>
+      </div>
+      </div>
+        <div className='lg:grid lg:grid-cols-2 lg:place-items-start lg:mt-12  2xl:ml-[130px]'>
+          <div className='flex flex-col gap-2 mt-14 lg:mt-0  items-center justify-center text-white'>
             <h2 className='font-bold text-2xl'>Avisos imporantes</h2>
             <div className='flex flex-col mt-4 gap-1'>
                 <p className='text-base font-light text-center'>
@@ -39,9 +43,9 @@ export default function Footer() {
             </div>
             
         </div>
-        <div className='flex flex-col gap-2 mt-10 items-center justify-center text-white'>
-            <h2 className='font-bold text-2xl'>Terminos del servicio</h2>
-            <div className='flex flex-col mt-4 gap-1'>
+        <div className='flex flex-col gap-2  lg:w-full mt-10 lg:mt-0 lg:items-end items-center  text-white'>
+            <h2 className='font-bold text-2xl  lg:mx-12'>Terminos del servicio</h2>
+            <div className='flex flex-col mt-4 gap-1 '>
                 <p className='text-base font-light text-center'>
                 Condiciones de viaje
             </p>
@@ -52,7 +56,9 @@ export default function Footer() {
             </div>
             
         </div>
-      </div>
+        </div>
+        
+      
     </div>
   )
 }

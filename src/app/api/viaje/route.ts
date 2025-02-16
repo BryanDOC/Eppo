@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       busId,
     } = body;
 
-    // Validaciones básicas
+    
     if (!origen || !destino || !fechaSalida || !precio || !busId || !fechaLlegada) {
       return NextResponse.json(
         { error: "Los campos 'origen', 'destino', 'fechaSalida', 'precio' y 'busId' son obligatorios." },
@@ -59,72 +59,6 @@ export async function POST(req: Request) {
 }
 
 
-// export async function GET(req: NextRequest) {
-  
-//   try {
-//     const { searchParams } = new URL(req.url);
-//     const placeOrigin = searchParams.get("placeOrigin");
-//     const placeDestination = searchParams.get("placeDestination");
-//     const date = searchParams.get("date"); 
-
-    
-//     if (!placeOrigin || !placeDestination || !date) {
-//       return NextResponse.json(
-//         { error: "Faltan parámetros requeridos: placeOrigin, placeDestination o date" },
-//         { status: 400 }
-//       );
-//     }
-
-//     const ahoraUTC = new Date();
-
-//     const finDia = endOfDay(new Date(date));
-
-    
-//     const viajes = await db.viaje.findMany({
-//       where: {
-//         origen: placeOrigin,
-//         destino: placeDestination,
-//         fechaSalida: {
-//           gte: ahoraUTC, 
-//           lte: finDia,   
-//         },
-//       },
-//       include: {
-//         bus: {
-//           include: {
-//             asientos: true, 
-//           },
-//         },
-//         reservas: true, 
-//       },
-//       orderBy: {
-//         fechaSalida: "asc",
-//       },
-//     });
-
-   
-//     const viajesConAsientos = viajes.filter((viaje) => {
-//       const asientosReservadosIds = viaje.reservas.map((reserva) => reserva.asientoId);
-//       const asientosLibres = viaje.bus.asientos.filter(
-//         (asiento) => !asientosReservadosIds.includes(asiento.id)
-//       ).length;
-//       return asientosLibres > 0; 
-//     });
-
-    
-//     return NextResponse.json(viajesConAsientos, { status: 200 });
-//   } catch (error) {
-//     console.error("Error al obtener viajes:", error);
-//     return NextResponse.json(
-//       { error: "Error al obtener los viajes" },
-//       { status: 500 }
-//     );
-//   }
-// }
-
-
-
-
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -151,8 +85,8 @@ export async function GET(req: NextRequest) {
         origen: placeOrigin,
         destino: placeDestination,
         fechaSalida: {
-          gte: inicioDia, // Comienza en "ahora" si es hoy, o a la medianoche si es otro día.
-          lte: finDia, // Finaliza al final del día seleccionado.
+          gte: inicioDia, 
+          lte: finDia, 
         },
       },
       include: {
@@ -168,13 +102,20 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    const viajesConAsientos = viajes.filter((viaje) => {
-      const asientosReservadosIds = viaje.reservas.map((reserva) => reserva.asientoId);
-      const asientosLibres = viaje.bus.asientos.filter(
-        (asiento) => !asientosReservadosIds.includes(asiento.id)
-      ).length;
-      return asientosLibres > 0;
-    });
+   
+    const viajesConAsientos = viajes
+      .map((viaje) => {
+        const asientosReservadosIds = viaje.reservas.map((reserva) => reserva.asientoId);
+        const asientosLibres = viaje.bus.asientos.filter(
+          (asiento) => !asientosReservadosIds.includes(asiento.id)
+        ).length;
+
+        return { 
+          ...viaje, 
+          asientosLibres 
+        };
+      })
+      .filter((viaje) => viaje.asientosLibres > 0); 
 
     return NextResponse.json(viajesConAsientos, { status: 200 });
   } catch (error) {
@@ -185,4 +126,3 @@ export async function GET(req: NextRequest) {
     );
   }
 }
-

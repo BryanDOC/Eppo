@@ -7,7 +7,7 @@ export default function ContainerCardsPasaje(Props: { viajesHome: Viaje[] }) {
   const { viajesHome } = Props
   
   return (
-    <div className='flex flex-col gap-6 px-6 mt-8'>
+    <div className='flex flex-col xl:mt-16 gap-6 px-6 md:px-12 mt-8 lg:mt-12 lg:px-[80px] 2xl:px-[200px] '>
       {
         viajesHome.map((viaje) => (
             

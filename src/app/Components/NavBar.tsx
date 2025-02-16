@@ -1,39 +1,55 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Menu } from 'lucide-react';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { DialogTitle } from '@radix-ui/react-dialog';
+import Link from 'next/link';
+import SheetMenu from './SheetMenu';
+import SheetLogin from './SheetLogin';
+import { auth } from '../../../auth';
+import CloseSesion from './CloseSesion';
 
 
 
-export default function NavBar() {
+
+
+export default async function NavBar() {
   
-  
-  return (
-    <div className='flex items-center justify-between px-6 py-3'>
-    <Image src="/logo.png" alt="Logo" width={1920} height={1080} className='w-16 h-auto'/>
-    <Sheet>
-  <SheetTrigger> <Menu className='text-primaryColor' size={24}/></SheetTrigger>
-  <SheetContent className='w-full' side={"right"}>
-    <SheetHeader>
-      <DialogTitle></DialogTitle>
-      <Image src="/logo.png" alt="Logo" width={100} height={24} />
-      <SheetDescription className='flex flex-col font-bold text-xl gap-8 pt-10 text-primaryColor'>
+    const sesion = await auth()
+    
+    
+    return (
+    <div className='flex items-center justify-between px-6 md:px-12 lg:px-[80px] py-3 md:py-6 2xl:px-[200px] '>
+      <Link href={"/"}>
+<Image src="/logo.png" alt="Logo" width={1920} height={1080} className='w-16 md:w-[140px] h-auto'/>
+      </Link>
+    
+    <div className=''>
+      <div className='hidden md:flex'>
+        <div className='flex text-base gap-8 items-center '>
         <a href="">Cargo</a>
         <a href="">Destinos</a>
         <a href="">Terminales</a>
         <a href="">Nosotros</a>
-      </SheetDescription>
-    </SheetHeader>
-  </SheetContent>
-</Sheet>
+        {
+          sesion 
+          ?  <CloseSesion/>
+          :  <SheetLogin/>
+          
+        }
+        </div>
+      </div>
+      <div className='md:hidden flex gap-4  items-center '>
+        {
+          sesion 
+          ?  <CloseSesion/>
+          :  <SheetLogin/>
+          
+        }
+    
+      <SheetMenu />
+      </div>
+      
+    </div>
+    
    
     </div>
   )

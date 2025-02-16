@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
   	extend: {
+
+		screens: {
+			xs: '415px',
+		},
   		colors: {
   			
   			backgroundApp: "#F3F2F6",

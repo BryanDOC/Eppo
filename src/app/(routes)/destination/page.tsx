@@ -44,7 +44,7 @@ export default function Page() {
         setError("Error desconocido");
       }
     }
-  }, [placeOrigin, placeDestination, formattedDate, setViajesSearch, setError]);
+  }, [placeOrigin, placeDestination, formattedDate, setViajesSearch, setError, error, router, toast]);
 
 
     
@@ -52,12 +52,12 @@ export default function Page() {
     if (formattedDate) {
       fetchViajesSearch();
     }
-  }, [fetchViajesSearch, date]);
+  }, [fetchViajesSearch, date, formattedDate]);
 
   return (
   
-    <div className='mt-6'>
-      <h2 className=' text-2xl text-primaryColor px-6 py-6'>Selecciona tu <span className='font-bold '>viaje de ida</span></h2>
+    <div className='mt-6 '>
+      <h2 className=' text-2xl md:text-[32px] text-primaryColor px-6 py-6 md:px-12 lg:px-[80px] 2xl:px-[200px] '>Selecciona tu <span className='font-bold '>viaje de ida</span></h2>
       <DayNavigator selectedDate={new Date(date!)} />
       <div className='mb-[100px]'>
       <ContainerCardsPasaje viajesHome={viajesSearch} />
